@@ -40,8 +40,9 @@ class OAuth1HttpClient(AbstractAsyncHttpClient):
 
     def __init__(self, consumer_key: str, consumer_secret: str, *,
                  access_token: Optional[str] = None,
-                 access_token_secret: Optional[str] = None):
-        super().__init__()
+                 access_token_secret: Optional[str] = None,
+                 loop: Optional[BaseEventLoop] = None):
+        super().__init__(loop=loop)
         self._oauth_client = OAuth1Client(
             consumer_key,
             client_secret=consumer_secret,
@@ -77,8 +78,3 @@ class OAuth1HttpClient(AbstractAsyncHttpClient):
         async with self._client.get(url, headers=headers) as r:
             r.raise_for_status()
             return await r.json()
-
-
-# TODO
-# class OAuth2Client(AbstractAsyncHttpClient):
-#     pass

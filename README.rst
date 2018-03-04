@@ -19,16 +19,15 @@ Currently only the oauth1 methods are supported (application only authentication
     import contextlib
 
     from littlebird import LittleBird
-    from littlebird.web import OAuth1HttpClient
 
-    little_bird = LittleBird(OAuth1HttpClient(
+    little_bird = LittleBird(
         # required for oauth1 signing:
         consumer_key: str,
         consumer_secret: str,
         # optionally necessary for endpoints requiring a user's scope:
         access_token: Optional[str] = None,
         access_token_secret: Optional[str] = None
-    ))
+    )
 
     async def main(little_bird):
         # watch the random sampling of tweets chosen by twitter
