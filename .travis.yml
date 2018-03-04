@@ -1,0 +1,21 @@
+sudo: false
+
+language: python
+
+python:
+  - '3.6'
+  - '3.7-dev'
+
+install:
+  - pip install tox-travis
+
+script:
+  - tox
+
+deploy:
+  provider: pypi
+  user: mrasband
+  password:
+    secure: j/+Jy8+MEo+raEPbCJBAin+n+HMdqb9d1CsDnuJx51lbWb3/9eRPT2p1WBOU6A+7d8/O9LzPia8V7ndH8HsjAiK+M+e+2fHkNBTpWkaP0IPsVlqcJb08odzDmWFIjgCWHQEKiYGX3b5yRM7RoB28icMr1/1cw/Zn/5Z2uUFpVbRFPAKk3qItyJmQXuIxOTPsVvO0M/Ggy5UjoXQnDudEoY7TnsFlhy6L+Zc3cfjGPGicECjF+23oOwYWcuau7/pAKZjHlozZv79OpUiw2L2qCggHoiuOJMxTtxQlbyYL7YVyyU7oPuGReO588fESqdxLL6EA4eijOwU600TyTwh/ASlS5APxc+tE10zjPVbINWy1HaeOzii+TSTDG2zLcJQZX7jUXeGHVc2olyzf4RlvQ9e670Tx0F+J7oouSg0bfavNgqX4I6AdLkCOxcw/tjhLhQ/+gw5SRTo/1wnFl8TrarKVHtBDccCE0zDCqt+DidxXnZt2MPkuwev8QKw9Wq0yRChVXAbW/IqOK8bIRqLBTeyCFBrQY2CBsCyBSuM8Xj5E2oHH1m3T/Jd01BSPj35B4L3xntyvpungmDmPXqjhapTp0QoZqj6OExiwHviSxafYtYTbXsaD+ruEFrmRE2hPmKiJHQIAt55KUH1hT/ZRXR9ngivLJkYhQc1hjJEPBnQ=
+  on:
+    tags: true
