@@ -3,6 +3,8 @@ littlebird
 
 .. image:: https://travis-ci.org/mrasband/littlebird.svg?branch=master
     :target: https://travis-ci.org/mrasband/littlebird
+.. image:: https://img.shields.io/pypi/v/nine.svg
+    :target: https://pypi.python.org/pypi/littlebird
 
 LittleBird is a Python 3.6+ asynchronous library for accessing twitter utilizing new python features: async generators, type hinting, etc.
 
