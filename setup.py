@@ -26,7 +26,7 @@ setup(name='littlebird',
           'uvloop': ['uvloop'],
       },
       classifiers=[
-          'Development Status :: 1 - Alpha',
+          'Development Status :: 3 - Alpha',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: MIT License',
           'Operating System :: OS Independent',
