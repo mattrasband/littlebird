@@ -20,6 +20,7 @@ setup(name='littlebird',
       url='https://github.com/mrasband/littlebird',
       install_requires=[
           'aiohttp>=3.0.0',
+          'oauthlib>=2.0.0',
       ],
       extras_require={
           'uvloop': ['uvloop'],
