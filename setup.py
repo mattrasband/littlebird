@@ -10,7 +10,7 @@ def read(path: Path) -> str:
 
 
 setup(name='littlebird',
-      version='0.0.1',
+      version='0.0.0a1',
       packages=['littlebird'],
       author='Matt Rasband',
       author_email='matt.rasband@gmail.com',
