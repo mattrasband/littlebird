@@ -13,8 +13,13 @@ class FilterLevel(Enum):
 class LittleBird:
     __slots__ = ('_client',)
 
-    def __init__(self, client: web.AbstractAsyncHttpClient):
-        self._client = client
+    def __init__(self, consumer_key: str, consumer_secret: str, *,
+                 access_token: Optional[str] = None,
+                 access_token_secret: Optional[str] = None):
+        self._client = web.OAuth1HttpClient(consumer_key=consumer_key,
+                                            consumer_secret=consumer_secret,
+                                            access_token=access_token,
+                                            access_token_secret=access_token_secret)  # noqa
 
     async def filter(self, *,
                      track: Optional[List[str]] = None,

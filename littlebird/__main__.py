@@ -12,7 +12,6 @@ else:
 from pygments import formatters, highlight, lexers
 
 from .client import LittleBird
-from .web import OAuth1HttpClient
 
 
 async def _main(little_bird: LittleBird) -> None:
@@ -35,35 +34,20 @@ def main():
                             description='Stream tweets from twitter in real-time',  # noqa
                             formatter_class=ArgumentDefaultsHelpFormatter)
 
-    subparsers = parser.add_subparsers(title='Authentication methods')
-
-    oauth1_parser = subparsers.add_parser(
-        'oauth1',
-        help='Use OAuth1 for application-only or unattended user access',
-        description='Use credentials from https://apps.twitter.com. If '
-                    'unattended user access is necessary, generate a user '
-                    ' access token.',
-    )
-    oauth1_parser.add_argument('--consumer-key', '-k', type=str, required=True,
-                               help='OAuth 1.0 Consumer Key')
-    oauth1_parser.add_argument('--consumer-secret', '-s', type=str,
-                               required=True, help='OAuth 1.0 Consumer Secret')
-    oauth1_parser.add_argument('--access-token', type=str,
-                               help='User access token')
-    oauth1_parser.add_argument('--access-token-secret', type=str,
-                               help='User access token secret')
-    # the parser is a factory for an HTTP client for LittleBird to use
-    oauth1_parser.set_defaults(func=lambda args: OAuth1HttpClient(
-        consumer_key=args.consumer_key,
-        consumer_secret=args.consumer_secret,
-        access_token=args.access_token,
-        access_token_secret=args.access_token_secret)
-    )
+    parser.add_argument('--consumer-key', '-k', type=str, required=True,
+                        help='OAuth 1.0 Consumer Key')
+    parser.add_argument('--consumer-secret', '-s', type=str,
+                        required=True, help='OAuth 1.0 Consumer Secret')
+    parser.add_argument('--access-token', type=str, help='User access token')
+    parser.add_argument('--access-token-secret', type=str,
+                        help='User access token secret')
     args = parser.parse_args()
 
     loop = asyncio.get_event_loop()
-    http_client = args.func(args)
-    little_bird = LittleBird(http_client)
+    little_bird = LittleBird(consumer_key=args.consumer_key,
+                             consumer_secret=args.consumer_secret,
+                             access_token=args.access_token,
+                             access_token_secret=args.access_token_secret)
 
     with suppress(KeyboardInterrupt):
         loop.run_until_complete(_main(little_bird))
