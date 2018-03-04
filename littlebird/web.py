@@ -60,7 +60,8 @@ class OAuth1HttpClient(AbstractAsyncHttpClient):
         )
         async with self._client.request(method.upper(), url,
                                         headers=headers,
-                                        data=body) as r:
+                                        data=body,
+                                        timeout=None) as r:
             r.raise_for_status()
             async for line in r.content:
                 if not line.strip():
